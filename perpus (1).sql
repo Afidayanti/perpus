@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jul 2023 pada 17.14
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.27
+-- Generation Time: Jul 16, 2023 at 08:05 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -32,10 +32,17 @@ CREATE TABLE `admin` (
   `password` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`) VALUES
+('admin', 'admin');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku`
+-- Table structure for table `buku`
 --
 
 CREATE TABLE `buku` (
@@ -47,7 +54,7 @@ CREATE TABLE `buku` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -58,7 +65,7 @@ CREATE TABLE `kelas` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pinjam`
+-- Table structure for table `pinjam`
 --
 
 CREATE TABLE `pinjam` (
@@ -72,7 +79,7 @@ CREATE TABLE `pinjam` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `siswa`
+-- Table structure for table `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -86,17 +93,17 @@ CREATE TABLE `siswa` (
 --
 
 --
--- Indeks untuk tabel `pinjam`
+-- Indexes for table `pinjam`
 --
 ALTER TABLE `pinjam`
   ADD PRIMARY KEY (`id_pinjam`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `pinjam`
+-- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
   MODIFY `id_pinjam` int(65) NOT NULL AUTO_INCREMENT;

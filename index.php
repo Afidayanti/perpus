@@ -40,18 +40,29 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                                     </div>
-                                    <form class="user">
+                                     <?php 
+                                    if(isset($_GET['pesan'])){
+                                        if($_GET['pesan'] == "gagal"){
+                                            echo "Login gagal! username dan password salah!";
+                                        }else if($_GET['pesan'] == "logout"){
+                                            echo "Anda telah berhasil logout";
+                                        }else if($_GET['pesan'] == "belum_login"){
+                                            echo "Anda harus login untuk mengakses halaman admin";
+                                        }
+                                    }
+                                    ?>
+                                    <form class="user" method="post" action="cek_login.php">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                 aria-describedby="" placeholder="Username">
+                                                 aria-describedby="" name="username" placeholder="Masukkan Username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" name="password"  placeholder="Masukkan Password">
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                </button>
                                     </form> 
                                 </div>
                             </div>
