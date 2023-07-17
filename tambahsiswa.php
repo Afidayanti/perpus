@@ -202,7 +202,7 @@ if(isset($_POST['tambah'])){ //untuk create
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Siswa</h6>
                         </div> 
-                        <div class="card-body">
+                        <div class="card-body">hgffgh
                             <form>
                                 <div class="from-group" >
                                     <label>NISN:</label>
