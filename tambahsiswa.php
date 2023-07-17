@@ -139,10 +139,10 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Siswa</h6>
                         </div> 
                         <div class="card-body">
-                            <form>
+                            <form action="prosestambahsiswa.php" method="post">
                                 <div class="from-group" >
                                     <label>NISN:</label>
-                                    <input type="text" name="NISN" class="form-control"/>
+                                    <input type="text" name="nisn" class="form-control"/>
                                 </div>
                                     <label>Nama:</label>
                                     <div class="from-group" >
@@ -152,14 +152,14 @@
                                     <div class="from-group" >
                                     <input type="text" name="alamat" class="form-control"/>
                                 </div>
-                                    <label>Kelas:</label>
+                                    <!-- <label>Kelas:</label>
                                     <div class="from-group" >
                                     <input type="text" name="ruang" class="form-control"/>
-                                </div>
+                                </div> -->
                                 <div class="mt-2"></div>
-                                <a href="" class="btn btn-primary btn-icon-split"> 
+                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah</span>
-                                </a>
+                            </button>
                             </form>
                         </div>
                     </div>
