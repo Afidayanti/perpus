@@ -1,3 +1,67 @@
+<?php
+$host       ="localhost";
+$user       ="root";
+$pass       ="";
+$db         ="perpus";
+
+$koneksi    =  mysqli_connect($host,$user,$pass,$db);
+$nisn     = "";
+$nama     = "";
+$alamat   = "";
+$sukses   = "";
+$error    = "";
+
+
+if(isset($_GET['op'])){
+    $op = $_GET['op'];
+}else{
+    $op = "";
+}
+if($op == 'delete'){
+    $id     = $_GET['id'];
+    $sql1   = "delete from mahasiswa where id = '$id'";
+    $q1     = mysqli_query($koneksi,$sql1);
+    if($q1){
+        $sukses = "Berhasil Hapus Data";
+    }else{
+        $error  = "Gagal Melakukan Delete Data";
+    }
+}
+if($op == 'edit'){
+    $id         = $_GET['id'];
+    $sql1       = "select * from perpus where id = '$id'";
+    $q1         = mysqli_query($koneksi,$sql1);
+    $r1         = mysqli_fetch_array($q1);
+    $nisn       = $r1['nisn'];
+    $nama       = $r1['nama'];
+    $alamat     = $r1['alamat'];
+
+    if($nim == ''){
+        $error = "Data Tidak Ditemukan";
+    }
+}
+if(isset($_POST['tambah'])){ //untuk create
+    $nisn       = $_POST['nim'];
+    $nama       = $_POST['nama'];
+    $alamat     = $_POST['alamat'];
+
+    if($nim && $nama && $alamat && $fakultas){
+        if($op == 'edit'){ //untuk insert
+            $sql1   = "insert into perpus(nisn,nama,alamat) values ('$nisn','$nama','$alamat')";
+            $q1     = mysqli_query($koneksi,$sql1);
+            if ($q1) {
+                $sukses     = "Berhasil Memasukkan Data Baru";
+            } else {
+                $error      = "Gagal Memasukkan Data";
+            }
+        }
+        }else{
+            $error = "Silahkan Masukkan Semua Data";
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,20 +206,20 @@
                             <form>
                                 <div class="from-group" >
                                     <label>NISN:</label>
-                                    <input type="text" name="NISN" class="form-control"/>
+                                    <input type="text" name="NISN" class="form-control" value="<?php echo $nisn ?>"/>
                                 </div>
                                     <label>Nama:</label>
                                     <div class="from-group" >
-                                    <input type="text" name="nama" class="form-control"/>
+                                    <input type="text" name="nama" class="form-control" value="<?php echo $nama ?>"/>
                                 </div>
                                     <label>Alamat:</label>
                                     <div class="from-group" >
-                                    <input type="text" name="alamat" class="form-control"/>
+                                    <input type="text" name="alamat" class="form-control" value="<?php echo $alamat ?>"/>
                                 </div>
-                                    <label>Kelas:</label>
+                                    <!-- <label>Kelas:</label>
                                     <div class="from-group" >
                                     <input type="text" name="ruang" class="form-control"/>
-                                </div>
+                                </div> -->
                                 <div class="mt-2"></div>
                                 <a href="" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah</span>

@@ -1,3 +1,47 @@
+<?php
+
+$host       ="localhost";
+$user       ="root";
+$pass       ="";
+$db         ="akademik";
+
+$nisn     = "";
+$nama     = "";
+$alamat   = "";
+$sukses   = "";
+$error    = "";
+
+if(isset($_GET['op'])){
+    $op = $_GET['op'];
+}else{
+    $op = "";
+}
+if($op == 'delete'){
+    $id     = $_GET['id'];
+    $sql1   = "delete from perpus where id = '$id'";
+    $q1     = mysqli_query($koneksi,$sql1);
+    if($q1){
+        $sukses = "Berhasil Hapus Data";
+    }else{
+        $error = "Gagal Melakukan Delete Data";
+    }
+}
+if($op == 'edit'){
+    $id         = $_GET['id'];
+    $sql1       = "select * from perpus where id = '$id'";
+    $q1         = mysqli_query($koneksi,$sql1);
+    $r1         = mysqli_fetch_array($q1);
+    $nisn       = $r1['nisn'];
+    $nama       = $r1['nama'];
+    $alamat     = $r1['alamat'];
+
+    if($nim == ''){
+        $error = "Data Tidak Ditemukan";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -173,10 +217,10 @@
                                             <td>banda aceh</td>
                                             <td>5A</td>
                                             <td>
-                                                <a href="#" class="btn btn-success btn-icon-split"> 
+                                                <a href="siswa.php?op=edit&id=<?php echo $id ?>" class="btn btn-success btn-icon-split"> 
                                                     <span class="text">Edit</span>
                                                 </a>        
-                                                <a href="#" class="btn btn-danger btn-icon-split"> 
+                                                <a href="siswa.php?op=delete&id=<?php echo $id ?>" class="btn btn-danger btn-icon-split"> 
                                                     <span class="text">Delete</span>
                                                 </a>
 
