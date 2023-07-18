@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>MIN 45 Aceh Besar</title>
+    cak tes push
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
