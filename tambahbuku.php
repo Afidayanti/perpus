@@ -139,7 +139,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Buku</h6>
                         </div> 
                         <div class="card-body">
-                            <form>
+                            <form action="prosestambahbuku.php" method="post">
                                 <div class="from-group" >
                                     <label>Kode Buku:</label>
                                     <input type="text" name="kode_buku" class="form-control"/>
@@ -153,7 +153,7 @@
                                     <input type="date" name="tahun_terbit" class="form-control"/>
                                 </div>
                                 <div class="mt-2"></div>
-                                <a href="" class="btn btn-primary btn-icon-split"> 
+                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah</span>
                                 </a>
                             </form>

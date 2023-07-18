@@ -162,6 +162,29 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead> 
+
+                                    <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"select * from kelas");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){
+                                            echo "
+                                            <tr>
+                                                <td>$no</td>
+                                                <td>$tampil[ruang]</td>
+                                                <td>
+                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                    <span class='text'>Edit</span>
+                                                </a>        
+                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                    <span class='text'>Delete</span>
+                                                </a>
+
+                                            </td>
+                                           </tr> ";
+                                        }
+                                    ?>
+
                                     <tbody>
                                         <tr>
                                             <td>1</td>

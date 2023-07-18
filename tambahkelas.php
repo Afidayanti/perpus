@@ -139,13 +139,13 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Kelas</h6>
                         </div> 
                         <div class="card-body">
-                            <form>
+                            <form action="prosestambahkelas.php" method="post">
                                 <div class="from-group" >
                                     <label>Nama Ruang:</label>
                                     <input type="text" name="ruang" class="form-control"/>
                                 </div>
                                 <div class="mt-2"></div>
-                                <a href="" class="btn btn-primary btn-icon-split"> 
+                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah</span>
                                 </a>
                             </form>

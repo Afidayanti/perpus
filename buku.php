@@ -165,21 +165,29 @@
                                         </tr>
                                     </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>123A</td> 
-                                            <td>COBAAN KOK DICOBAIN</td> 
-                                            <td>2023</td> 
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split"> 
-                                                    <span class="text">Edit</span>
+                                    <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"select * from buku");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){
+                                            echo "
+                                            <tr>
+                                                <td>$no</td>
+                                                <td>$tampil[kode_buku]</td>
+                                                <td>$tampil[judul]</td>
+                                                <td>$tampil[tahun_terbit]</td>
+                                                <td>
+                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                    <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href="#" class="btn btn-danger btn-icon-split"> 
-                                                    <span class="text">Delete</span>
+                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                    <span class='text'>Delete</span>
                                                 </a>
 
                                             </td>
-                                        </tr> 
+                                           </tr> ";
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>

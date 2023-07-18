@@ -161,17 +161,35 @@
                                             <th>NISN</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
-                                            <th>Kelas</th>
+                                            <!-- <th>Kelas</th> -->
                                             <th>Aksi</th>
                                         </tr>
                                     </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>12345</td>
-                                            <td>fida</td>
-                                            <td>banda aceh</td>
-                                            <td>5A</td>
+                                    <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"select * from siswa");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){
+                                            echo "
+                                            <tr>
+                                                <td>$no</td>
+                                                <td>$tampil[nisn]</td>
+                                                <td>$tampil[nama]</td>
+                                                <td>$tampil[alamat]</td>
+                                                <td>
+                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                    <span class='text'>Edit</span>
+                                                </a>        
+                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                    <span class='text'>Delete</span>
+                                                </a>
+
+                                            </td>
+                                           </tr> ";
+                                        }
+                                    ?>
+                                <!-- <tr>
                                             <td>
                                                 <a href="#" class="btn btn-success btn-icon-split"> 
                                                     <span class="text">Edit</span>
@@ -181,7 +199,7 @@
                                                 </a>
 
                                             </td>
-                                        </tr> 
+                                        </tr>  -->
                                     </tbody>
                                 </table>
                             </div>
