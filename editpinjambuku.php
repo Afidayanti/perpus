@@ -136,16 +136,23 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Peminjaman Buku</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Edit Data Peminjaman Buku</h6>
                         </div> 
                         <div class="card-body">
-                            <form action="prosestambahpinjam.php" method="post">
+                            <?php 
+                            include "koneksi.php";
+                            $id = $_GET['id'];
+                            $query_mysql = mysqli_query($koneksi,"SELECT * FROM pinjam WHERE id_pinjam='$id'");
+                            while($data = mysqli_fetch_array($query_mysql)){
+                            ?>
+                            <form action="proseseditpinjam.php" method="post">
+                                <input type="hidden" name="id_pinjam" value="<?=$data['id_pinjam']?>">
                                 <div class="from-group" >
                                     <label>Kode Buku:</label>
                                     
                                     <select name="kode_buku" class="form-control">
                                          <?php
-                                        include "koneksi.php";
+                                        // include "koneksi.php";
                                         $no=1;
                                         $ambildata = mysqli_query($koneksi,"select * from buku");
                                         while ($tampil = mysqli_fetch_array($ambildata)){ 
@@ -163,7 +170,7 @@
                                     <label>Nama Siswa</label>
                                      <select name="nisn" class="form-control">
                                          <?php
-                                        include "koneksi.php";
+                                        // include "koneksi.php";
                                         $no=1;
                                         $ambilsiswa = mysqli_query($koneksi,"select * from siswa");
                                         while ($siswa = mysqli_fetch_array($ambilsiswa)){ 
@@ -178,11 +185,11 @@
                                 </div> 
                                 <div class="from-group" >
                                     <label>Tanggal Pinjam</label>
-                                    <input type="date" name="tgl_pinjam" class="form-control"/>
+                                    <input type="date" name="tgl_pinjam"  class="form-control"/>
                                 </div>
                                 <div class="from-group" >
                                     <label>Tanggal Kembali</label>
-                                    <input type="date" name="tgl_kembali" class="form-control"/>
+                                    <input type="date" name="tgl_kembali"  class="form-control"/>
                                 </div>
                                 <!-- <div class="from-group" >
                                     <label>Denda</label>
@@ -190,8 +197,9 @@
                                 </div> -->
                                 <div class="mt-2"></div>
                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
-                                    <span class="text">Tambah</span> </button>
+                                    <span class="text">Simpan</span> </button>
                             </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

@@ -154,8 +154,8 @@
                                 </div>
                                 <div class="mt-2"></div>
                                 <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
-                                    <span class="text">Tambah</span>
-                                </a>
+                                    <span class="text">Tambah</span> </button>
+                                <!-- </a> -->
                             </form>
                         </div>
                     </div>

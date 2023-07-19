@@ -163,8 +163,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Buku</th>
-                                            <th>NISN</th>
+                                            <th>Nama Buku</th>
+                                            <th>Nama Siswa</th>
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Denda</th>
@@ -172,23 +172,31 @@
                                         </tr>
                                     </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>12311</td>
-                                            <td>123A</td> 
-                                            <td>12-12-12</td> 
-                                            <td>12-12-14</td> 
-                                            <td>500</td> 
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split"> 
-                                                    <span class="text">Edit</span>
+                                        <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){
+                                            echo "
+                                            <tr>
+                                                <td>$no</td>
+                                                <td>$tampil[judul]</td>
+                                                <td>$tampil[nama]</td>
+                                                <td>$tampil[tgl_pinjam]</td>
+                                                <td>$tampil[tgl_kembali]</td>
+                                                <td></td>
+                                                <td>
+                                                <a href='editpinjambuku.php?id=$tampil[id_pinjam]' class='btn btn-success btn-icon-split'> 
+                                                    <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href="#" class="btn btn-danger btn-icon-split"> 
-                                                    <span class="text">Delete</span>
+                                                <a href='hapuspinjambuku.php?id=$tampil[id_pinjam]' class='btn btn-danger btn-icon-split'> 
+                                                    <span class='text'>Delete</span>
                                                 </a>
 
                                             </td>
-                                        </tr> 
+                                           </tr> ";
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
