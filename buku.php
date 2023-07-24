@@ -177,10 +177,10 @@
                                                 <td>$tampil[judul]</td>
                                                 <td>$tampil[tahun_terbit]</td>
                                                 <td>
-                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                <a href='editdatabuku.php?id=$tampil[kode_buku]' class='btn btn-success btn-icon-split'> 
                                                     <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                <a href='hapusdatabuku.php?id=$tampil[kode_buku]' class='btn btn-danger btn-icon-split'> 
                                                     <span class='text'>Delete</span>
                                                 </a>
 

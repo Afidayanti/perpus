@@ -1,67 +1,3 @@
-<?php
-$host       ="localhost";
-$user       ="root";
-$pass       ="";
-$db         ="perpus";
-
-$koneksi    =  mysqli_connect($host,$user,$pass,$db);
-$nisn     = "";
-$nama     = "";
-$alamat   = "";
-$sukses   = "";
-$error    = "";
-
-
-if(isset($_GET['op'])){
-    $op = $_GET['op'];
-}else{
-    $op = "";
-}
-if($op == 'delete'){
-    $id     = $_GET['id'];
-    $sql1   = "delete from mahasiswa where id = '$id'";
-    $q1     = mysqli_query($koneksi,$sql1);
-    if($q1){
-        $sukses = "Berhasil Hapus Data";
-    }else{
-        $error  = "Gagal Melakukan Delete Data";
-    }
-}
-if($op == 'edit'){
-    $id         = $_GET['id'];
-    $sql1       = "select * from perpus where id = '$id'";
-    $q1         = mysqli_query($koneksi,$sql1);
-    $r1         = mysqli_fetch_array($q1);
-    $nisn       = $r1['nisn'];
-    $nama       = $r1['nama'];
-    $alamat     = $r1['alamat'];
-
-    if($nim == ''){
-        $error = "Data Tidak Ditemukan";
-    }
-}
-if(isset($_POST['tambah'])){ //untuk create
-    $nisn       = $_POST['nim'];
-    $nama       = $_POST['nama'];
-    $alamat     = $_POST['alamat'];
-
-    if($nim && $nama && $alamat && $fakultas){
-        if($op == 'edit'){ //untuk insert
-            $sql1   = "insert into perpus(nisn,nama,alamat) values ('$nisn','$nama','$alamat')";
-            $q1     = mysqli_query($koneksi,$sql1);
-            if ($q1) {
-                $sukses     = "Berhasil Memasukkan Data Baru";
-            } else {
-                $error      = "Gagal Memasukkan Data";
-            }
-        }
-        }else{
-            $error = "Silahkan Masukkan Semua Data";
-        }
-    }
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -200,34 +136,30 @@ if(isset($_POST['tambah'])){ //untuk create
                     <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Edit Data Kelas</h6>
                         </div> 
                         <div class="card-body">
-                            <form action="prosestambahsiswa.php" method="post">
+                            <?php 
+                            include "koneksi.php";
+                            $id = $_GET['id'];
+                            $query_mysql = mysqli_query($koneksi,"SELECT * FROM kelas WHERE id='$id'");
+                            while($data = mysqli_fetch_array($query_mysql)){
+                            ?>
+                            <form action="proseseditkelas.php" method="post">
+                                <input type="hidden" name="id" value="<?=$data['id']?>">
                                 <div class="from-group" >
-                        <div class="card-body">
-                            <form>
-                                <div class="from-group" >
-                                    <label>NISN:</label>
-                                    <input type="text" name="NISN" class="form-control" value="<?php echo $nisn ?>"/>
-                                </div>
-                                    <label>Nama:</label>
-                                    <div class="from-group" >
-                                    <input type="text" name="nama" class="form-control" value="<?php echo $nama ?>"/>
-                                </div>
-                                    <label>Alamat:</label>
-                                    <div class="from-group" >
-                                    <input type="text" name="alamat" class="form-control" value="<?php echo $alamat ?>"/>
-                                </div>
-                                    <!-- <label>Kelas:</label>
-                                    <div class="from-group" >
-                                    <input type="text" name="ruang" class="form-control"/>
+                                    <label>ruang</label>
+                                <input type="text" name="ruang" value="<?=$data['ruang'] ?>" class="form-control"/>
+                                </div> 
+                                <!-- <div class="from-group" >
+                                    <label>Denda</label>
+                                    <input type="text" name="denda" class="form-control"/>
                                 </div> -->
                                 <div class="mt-2"></div>
-                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
-                                    <span class="text">Tambah</span>
-                            </button>
+                               <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
+                                    <span class="text">Simpan</span> </button>
                             </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

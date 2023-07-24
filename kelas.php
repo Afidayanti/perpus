@@ -173,10 +173,10 @@
                                                 <td>$no</td>
                                                 <td>$tampil[ruang]</td>
                                                 <td>
-                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                <a href='editdatakelas.php?id=$tampil[id]' class='btn btn-success btn-icon-split'> 
                                                     <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                <a href='hapusdatakelas.php?id=$tampil[id]' class='btn btn-danger btn-icon-split'> 
                                                     <span class='text'>Delete</span>
                                                 </a>
 
@@ -186,19 +186,6 @@
                                     ?>
 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>1A</td> 
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split"> 
-                                                    <span class="text">Edit</span>
-                                                </a>        
-                                                <a href="#" class="btn btn-danger btn-icon-split"> 
-                                                    <span class="text">Delete</span>
-                                                </a>
-
-                                            </td>
-                                        </tr> 
                                     </tbody>
                                 </table>
                             </div>

@@ -222,10 +222,10 @@ if($op == 'edit'){
                                                 <td>$tampil[nama]</td>
                                                 <td>$tampil[alamat]</td>
                                                 <td>
-                                                <a href='#' class='btn btn-success btn-icon-split'> 
+                                                <a href='editdatasiswa.php?id=$tampil[id_siswa]' class='btn btn-success btn-icon-split'> 
                                                     <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href='#' class='btn btn-danger btn-icon-split'> 
+                                                <a href='hapusdatasiswa.php?id=$tampil[id_siswa]' class='btn btn-danger btn-icon-split'> 
                                                     <span class='text'>Delete</span>
                                                 </a>
 
