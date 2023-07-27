@@ -150,41 +150,88 @@
                         </div> 
                         <div class="card-body">
                             
-                                <a href="kembalibuku.php" class="btn btn-primary btn-icon-split"> 
-                                    <span class="text">Tambah Data</span>
-                                </a>
-                                <a href="#"  class="btn btn-info btn-icon-split"> 
+                                
+                                <a href="pdfbalik.php"  class="btn btn-info btn-icon-split" target="_blank"> 
                                     <span class="text">Export Laporan</span> 
                                 </a>
                              
                             <div class="my-2"></div>
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Buku</th>
-                                            <th>NISN</th>
-                                            <th>Tanggal Kembali</th> 
+                                            <th>Nama Buku</th>
+                                            <th>Nama Siswa</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Tanggal Di Kembalikan</th>
+                                            <th>Terlambat Bayar</th>
+                                            <th>Denda</th>
+                                            <th>status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>12311</td>
-                                            <td>123A</td>   
-                                            <td>12-12-14</td>  
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split"> 
-                                                    <span class="text">Edit</span>
+                                        <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku OR CURDATE() > tgl_kembali");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){ ?>
+                                            
+                                            <tr>
+                                                <td><?=$no?></td>
+                                                <td><?=$tampil['judul']?></td>
+                                                <td><?=$tampil['nama']?></td>
+                                                <td><?=$tampil['tgl_kembali']?></td>
+                                                <td><?=$tampil['tgl_dikembalikan']?></td>
+                                                <?php 
+                                                // Menghitung terlambat bayar
+                                                // hanya menampilkan data yang terlambat
+                                                // $q = $koneksi->query("SELECT * FROM pinjam WHERE CURDATE() > tgl_kembali");
+                                            
+                                                // $no = 1;
+                                                // while($r = $q->fetch_assoc()) { 
+                                                $t = date_create($tampil['tgl_dikembalikan']);
+                                                $n = date_create($tampil['tgl_kembali']);
+                                                $terlambat = date_diff($t, $n);
+                                                $hari = $terlambat->format("%a");
+                                            // menghitung denda
+                                                $denda = $hari * 1000;
+                                                
+ 
+                                                ?>
+                                                <td><?php 
+                                                    if ($tampil['status']==0) {
+                                                        echo "0";
+                                                    }else {
+                                                        echo $hari;
+                                                    }
+                                                    ?></td>
+                                                <td><?php 
+                                                    if ($tampil['status']==0) {
+                                                        echo "0";
+                                                    }else {
+                                                        echo $denda;
+                                                    }
+                                                    ?></td>
+                                                <td><?php 
+                                                    if ($tampil['status']==0) {
+                                                        echo "Belom Di Kembalikan";
+                                                    }else {
+                                                        echo "Sudah Di kembalikan";
+                                                    }
+                                                    ?></td>
+                                                <td>
+                                                <a href='kembalibuku.php?id=<?=$tampil["id_pinjam"]?>' class='btn btn-success btn-icon-split'> 
+                                                     <!-- href='editpinjambuku.php?id=$tampil[id_pinjam]' -->
+                                                    <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href="#" class="btn btn-danger btn-icon-split"> 
-                                                    <span class="text">Delete</span>
-                                                </a>
+                                                
 
                                             </td>
-                                        </tr> 
+                                           </tr> 
+                                        <?php } ?>
+                                    
                                     </tbody>
                                 </table>
                             </div>

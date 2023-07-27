@@ -136,27 +136,35 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Pengembalian Buku</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Pengembalian Buku</h6>
                         </div> 
                         <div class="card-body">
-                            <form>
+                            <?php 
+                            include "koneksi.php";
+                            $id = $_GET['id'];
+                            $query_mysql = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku and id_pinjam='$id'");
+                            while($data = mysqli_fetch_array($query_mysql)){
+                            ?>
+                            <form action="proseskembalibuku.php" method="post">
                                 <div class="from-group" >
-                                    <label>Kode Buku:</label>
-                                    <input type="text" name="kode_buku" class="form-control"/>
+                                    <label>Nama Buku:</label>
+                                    <input type="text" name="kode_buku" value="<?=$data['judul']?>" class="form-control" disabled/>
                                 </div> 
                                 <div class="from-group" >
-                                    <label>NISN</label>
-                                    <input type="text" name="NISN" class="form-control"/>
+                                    <label>Nama Siswa</label>
+                                    <input type="text" name="NISN" value="<?=$data['nama']?>" class="form-control" disabled/>
                                 </div>  
+                                <input type="hidden" name="id_pinjam" value="<?=$data['id_pinjam']?>">
                                 <div class="from-group" >
-                                    <label>Tanggal Kembali</label>
-                                    <input type="date" name="tgl_kembali" class="form-control"/>
+                                    <label>Tanggal Di Kembalikan</label>
+                                    <input type="date" name="tgl_dikembalikan" class="form-control"/>
                                 </div> 
                                 <div class="mt-2"></div>
-                                <a href="" class="btn btn-primary btn-icon-split"> 
-                                    <span class="text">Tambah</span>
-                                </a>
+                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
+                                    <span class="text">Simpan</span>
+                            </button>
                             </form>
+                             <?php } ?>
                         </div>
                     </div>
                 </div>

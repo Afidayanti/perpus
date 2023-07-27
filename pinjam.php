@@ -153,7 +153,7 @@
                                 <a href="pinjambuku.php" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah Data</span>
                                 </a>
-                                <a href="#"  class="btn btn-info btn-icon-split"> 
+                                <a href="pdfpinjam.php"  class="btn btn-info btn-icon-split" target="_blank"> 
                                     <span class="text">Export Laporan</span> 
                                 </a>
                              
@@ -167,7 +167,7 @@
                                             <th>Nama Siswa</th>
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
-                                            <th>Denda</th>
+                                            <th>status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead> 
@@ -176,27 +176,35 @@
                                         include "koneksi.php";
                                         $no=1;
                                         $ambildata = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku");
-                                        while ($tampil = mysqli_fetch_array($ambildata)){
-                                            echo "
+                                        while ($tampil = mysqli_fetch_array($ambildata)){ ?>
+                                            
                                             <tr>
-                                                <td>$no</td>
-                                                <td>$tampil[judul]</td>
-                                                <td>$tampil[nama]</td>
-                                                <td>$tampil[tgl_pinjam]</td>
-                                                <td>$tampil[tgl_kembali]</td>
-                                                <td></td>
+                                                <td><?=$no?></td>
+                                                <td><?=$tampil['judul']?></td>
+                                                <td><?=$tampil['nama']?></td>
+                                                <td><?=$tampil['tgl_pinjam']?></td>
+                                                <td><?=$tampil['tgl_kembali']?></td>
+                                                <td><?php 
+                                                    if ($tampil['status']==0) {
+                                                        echo "Belom Di Kembalikan";
+                                                    }else {
+                                                        echo "Sudah Di kembalikan";
+                                                    }
+                                                    ?></td>
                                                 <td>
-                                                <a href='editpinjambuku.php?id=$tampil[id_pinjam]' class='btn btn-success btn-icon-split'> 
+                                                <a href='editpinjambuku.php?id=<?=$tampil["id_pinjam"]?>' class='btn btn-success btn-icon-split'> 
+                                                     <!-- href='editpinjambuku.php?id=$tampil[id_pinjam]' -->
                                                     <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href='hapuspinjambuku.php?id=$tampil[id_pinjam]' class='btn btn-danger btn-icon-split'> 
+                                                <a href='hapuspinjambuku.php?id=<?=$tampil["id_pinjam"]?>' class='btn btn-danger btn-icon-split'> 
+                                                    <!-- href='hapuspinjambuku.php?id=$tampil[id_pinjam]' -->
                                                     <span class='text'>Delete</span>
                                                 </a>
 
                                             </td>
-                                           </tr> ";
-                                        }
-                                    ?>
+                                           </tr> 
+                                        <?php } ?>
+                                    
                                     </tbody>
                                 </table>
                             </div>
