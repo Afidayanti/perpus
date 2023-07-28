@@ -159,10 +159,23 @@
                                     <label>Alamat</label>
                                     <input type="text" name="alamat" value="<?=$data['alamat'] ?>" class="form-control"/>
                                 </div> 
-                                <!-- <div class="from-group" >
-                                    <label>Denda</label>
-                                    <input type="text" name="denda" class="form-control"/>
-                                </div> -->
+                                <div class="from-group" >
+                                    <label>Ruang</label>
+                                     <select name="id_ruang" class="form-control">
+                                         <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"select * from kelas");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){ 
+                                            echo "
+                                            <option value='$tampil[id]'>$tampil[ruang]</option>
+
+                                            "
+                                            ; 
+                                            } ?>
+                                        
+                                    </select>
+                                </div>
                                 <div class="mt-2"></div>
                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Simpan</span> </button>

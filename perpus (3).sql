@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2023 at 12:31 PM
+-- Generation Time: Jul 28, 2023 at 08:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.27
 
@@ -74,7 +74,7 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `ruang`) VALUES
-(0, 'ruang kita');
+(1, 'ruang kita');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,8 @@ CREATE TABLE `pinjam` (
 
 INSERT INTO `pinjam` (`id_pinjam`, `nisn`, `kode_buku`, `tgl_pinjam`, `tgl_kembali`, `status`, `tgl_dikembalikan`) VALUES
 (8, 32143, 402, '2023-07-26', '2023-07-29', 1, '2023-08-02'),
-(9, 32143, 402, '2023-07-27', '2023-07-28', 0, '0000-00-00');
+(9, 32143, 402, '2023-07-27', '2023-07-28', 0, '0000-00-00'),
+(10, 32143, 402, '2023-07-29', '2023-08-04', 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -110,15 +111,16 @@ CREATE TABLE `siswa` (
   `id_siswa` int(11) NOT NULL,
   `nisn` int(12) NOT NULL,
   `nama` varchar(225) NOT NULL,
-  `alamat` text NOT NULL
+  `alamat` text NOT NULL,
+  `id_ruang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nisn`, `nama`, `alamat`) VALUES
-(8, 32143, 'aziz separoh ', 'Lamlagang');
+INSERT INTO `siswa` (`id_siswa`, `nisn`, `nama`, `alamat`, `id_ruang`) VALUES
+(13, 997988, 'aziz separoh ', 'Lamlagang', 1);
 
 --
 -- Indexes for dumped tables
@@ -129,6 +131,12 @@ INSERT INTO `siswa` (`id_siswa`, `nisn`, `nama`, `alamat`) VALUES
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`kode_buku`);
+
+--
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pinjam`
@@ -147,16 +155,22 @@ ALTER TABLE `siswa`
 --
 
 --
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id_pinjam` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pinjam` int(65) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

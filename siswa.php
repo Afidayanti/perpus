@@ -205,7 +205,7 @@ if($op == 'edit'){
                                             <th>NISN</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
-                                            <!-- <th>Kelas</th> -->
+                                            <th>Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead> 
@@ -213,7 +213,7 @@ if($op == 'edit'){
                                     <?php
                                         include "koneksi.php";
                                         $no=1;
-                                        $ambildata = mysqli_query($koneksi,"select * from siswa");
+                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM siswa, kelas WHERE kelas.id=siswa.id_ruang");
                                         while ($tampil = mysqli_fetch_array($ambildata)){
                                             echo "
                                             <tr>
@@ -221,6 +221,7 @@ if($op == 'edit'){
                                                 <td>$tampil[nisn]</td>
                                                 <td>$tampil[nama]</td>
                                                 <td>$tampil[alamat]</td>
+                                                <td>$tampil[ruang]</td>
                                                 <td>
                                                 <a href='editdatasiswa.php?id=$tampil[id_siswa]' class='btn btn-success btn-icon-split'> 
                                                     <span class='text'>Edit</span>
