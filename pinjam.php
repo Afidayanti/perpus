@@ -52,15 +52,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -163,8 +163,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Buku</th>
-                                            <th>Nama Siswa</th>
+                                            <th>Judul Buku</th>
+                                            <th>Nama anggota</th>
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
                                             <th>status</th>
@@ -186,7 +186,7 @@
                                                 <td><?=$tampil['tgl_kembali']?></td>
                                                 <td><?php 
                                                     if ($tampil['status']==0) {
-                                                        echo "Belom Di Kembalikan";
+                                                        echo "Belum Di Kembalikan";
                                                     }else {
                                                         echo "Sudah Di kembalikan";
                                                     }
@@ -195,15 +195,14 @@
                                                 <a href='editpinjambuku.php?id=<?=$tampil["id_pinjam"]?>' class='btn btn-success btn-icon-split'> 
                                                      <!-- href='editpinjambuku.php?id=$tampil[id_pinjam]' -->
                                                     <span class='text'>Edit</span>
-                                                </a>        
-                                                <a href='hapuspinjambuku.php?id=<?=$tampil["id_pinjam"]?>' class='btn btn-danger btn-icon-split'> 
-                                                    <!-- href='hapuspinjambuku.php?id=$tampil[id_pinjam]' -->
-                                                    <span class='text'>Delete</span>
-                                                </a>
+                                                </a>   
+                                                <button type='button' class='btn btn-danger' onclick='confirmDeleteModal(<?=$tampil["id_pinjam"]?>)'>Delete</button>
 
                                             </td>
                                            </tr> 
-                                        <?php } ?>
+                                        <?php 
+                                    $no++;
+                                    } ?> 
                                     
                                     </tbody>
                                 </table>
@@ -258,6 +257,26 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <span id="deleteButton"></span>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -274,6 +293,20 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+
+        function confirmDeleteModal(id){
+            $('#deleteModal').modal();
+            $('#deleteButton').html('<button type="button" class="btn btn-danger" onclick="deleteData('+id+')">Ya</button>');
+        }     
+
+        function deleteData(id){
+            window.location.href='hapuspinjambuku.php?id='+id;
+            $('#deleteModal').modal('hide'); // now close modal
+        }  
+
+    </script>
 
 </body>
 

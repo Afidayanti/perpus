@@ -49,15 +49,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -141,7 +141,7 @@
                         <div class="card-body">
                             <form action="prosestambahpinjam.php" method="post">
                                 <div class="from-group" >
-                                    <label>Kode Buku:</label>
+                                    <label>Judul Buku</label>
                                     
                                     <select name="kode_buku" class="form-control">
                                          <?php
@@ -160,7 +160,7 @@
                                     <!-- <input type="text" name="kode_buku" class="form-control"/> -->
                                 </div> 
                                 <div class="from-group" >
-                                    <label>Nama Siswa</label>
+                                    <label>Nama Anggota</label>
                                      <select name="nisn" class="form-control">
                                          <?php
                                         include "koneksi.php";
@@ -178,11 +178,11 @@
                                 </div> 
                                 <div class="from-group" >
                                     <label>Tanggal Pinjam</label>
-                                    <input type="date" name="tgl_pinjam" class="form-control"/>
+                                    <input type="date" name="tgl_pinjam" id="tgl_pinjam" class="form-control"/>
                                 </div>
                                 <div class="from-group" >
                                     <label>Tanggal Kembali</label>
-                                    <input type="date" name="tgl_kembali" class="form-control"/>
+                                    <input type="date" name="tgl_kembali" id="tgl_kembali" class="form-control"/>
                                 </div>
                                 <!-- <div class="from-group" >
                                     <label>Denda</label>

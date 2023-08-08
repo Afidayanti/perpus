@@ -49,15 +49,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -111,7 +111,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> </span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -149,12 +149,20 @@
                                 <input type="hidden" name="kode_buku" value="<?=$data['kode_buku']?>">
                                 <div class="from-group" >
                                     <label>Judul</label>
-                                <input type="text" name="judul" value="<?=$data['judul'] ?>" class="form-control"/>
+                                    <input type="text" name="judul" value="<?=$data['judul'] ?>" class="form-control"/>
+                                </div> 
+                                <div class="from-group" >
+                                    <label>Pengarang</label>
+                                    <input type="text" name="pengarang" value="" class="form-control"/>
+                                </div> 
+                                <div class="from-group" >
+                                    <label>penerbit</label>
+                                    <input type="text" name="penerbit" value="" class="form-control"/>
                                 </div> 
                                 <div class="from-group" >
                                     <label>Tahun terbit</label>
                                     <input type="date" name="tahun_terbit" value="<?=$data['tahun_terbit'] ?>" class="form-control"/>
-                                </div>
+                                </div> 
                                 <!-- <div class="from-group" >
                                     <label>Denda</label>
                                     <input type="text" name="denda" class="form-control"/>

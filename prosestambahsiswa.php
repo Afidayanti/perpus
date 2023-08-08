@@ -5,16 +5,17 @@
         $nisn = $_POST['nisn'];
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
-        $id_ruang = $_POST['id_ruang'];
+        $kelas = $_POST['kelas'];
         
         // include database connection file
-        include_once("koneksi.php");
-                
-        // Insert user data into table
-        $result = mysqli_query($koneksi, "INSERT INTO siswa(nisn,nama,alamat,id_ruang) VALUES('$nisn','$nama','$alamat','$id_ruang')");
-        
-        // Show message when user added
-        // echo "User added successfully. <a href='index.php'>View Users</a>";
-        header("location:siswa.php");
+        include_once("koneksi.php"); 
+
+        $result =mysqli_query($koneksi, "SELECT nisn FROM siswa where nisn='$nisn'");
+        $cek_id=mysqli_num_rows($result);
+        if ($cek_id > 0){
+                    echo "<script>alert('NISN Sudah Digunakan');history.go(-1) </script>";
+            }else{
+                $result = mysqli_query($koneksi,"INSERT INTO siswa(nisn,nama,alamat,kelas) VALUES('$nisn','$nama','$alamat','$kelas')");
+                    header('location:siswa.php');} 
     }
     ?>

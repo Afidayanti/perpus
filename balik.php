@@ -52,15 +52,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -161,8 +161,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Buku</th>
-                                            <th>Nama Siswa</th>
+                                            <th>Judul Buku</th>
+                                            <th>Nama Anggota</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Tanggal Di Kembalikan</th>
                                             <th>Terlambat Bayar</th>
@@ -175,7 +175,7 @@
                                         <?php
                                         include "koneksi.php";
                                         $no=1;
-                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku OR CURDATE() > tgl_kembali");
+                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM pinjam ,buku, siswa WHERE siswa.nisn=pinjam.nisn AND buku.kode_buku=pinjam.kode_buku");
                                         while ($tampil = mysqli_fetch_array($ambildata)){ ?>
                                             
                                             <tr>
@@ -191,10 +191,20 @@
                                             
                                                 // $no = 1;
                                                 // while($r = $q->fetch_assoc()) { 
-                                                $t = date_create($tampil['tgl_dikembalikan']);
-                                                $n = date_create($tampil['tgl_kembali']);
-                                                $terlambat = date_diff($t, $n);
-                                                $hari = $terlambat->format("%a");
+                                                $t = $tampil['tgl_dikembalikan'] != null ? date_create($tampil['tgl_dikembalikan']) : '-';
+                                                $n = $tampil['tgl_kembali'] != null ? date_create($tampil['tgl_kembali']) : '-';
+                                                
+                                                if($t != '-' && $n != '-')
+                                                {
+                                                    $terlambat = date_diff($t, $n);
+                                                }
+                                                
+                                                $hari = 0;
+
+                                                if(isset($terlambat))
+                                                {
+                                                    $hari = $terlambat->format("%a");
+                                                }
                                             // menghitung denda
                                                 $denda = $hari * 1000;
                                                 
@@ -230,7 +240,9 @@
 
                                             </td>
                                            </tr> 
-                                        <?php } ?>
+                                        <?php 
+                                    $no++;
+                                    } ?>
                                     
                                     </tbody>
                                 </table>

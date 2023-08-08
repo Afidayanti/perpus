@@ -49,15 +49,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -111,7 +111,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -136,7 +136,7 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Anggota</h6>
                         </div> 
                         <div class="card-body">
                             <form action="prosestambahsiswa.php" method="post">
@@ -144,32 +144,20 @@
                         <div class="card-body">
                             <form>
                                 <div class="from-group" >
-                                    <label>NISN:</label>
-                                    <input type="text" name="nisn" class="form-control" />
+                                    <label>NISN</label>
+                                    <input type="text" name="nisn" class="form-control" required/>
                                 </div>
-                                    <label>Nama:</label>
-                                    <div class="from-group" >
-                                    <input type="text" name="nama" class="form-control" />
+                                <div class="from-group" >
+                                    <label>Nama</label> 
+                                    <input type="text" name="nama" class="form-control" required/>
                                 </div>
-                                    <label>Alamat:</label>
-                                    <div class="from-group" >
-                                    <input type="text" name="alamat" class="form-control" />
+                                <div class="from-group" >
+                                    <label>Alamat</label> 
+                                    <input type="text" name="alamat" class="form-control" required/>
                                 </div>
-                                    <label>Kelas:</label>
-                                     <select name="id_ruang" class="form-control">
-                                         <?php
-                                        include "koneksi.php";
-                                        $no=1;
-                                        $ambildata = mysqli_query($koneksi,"select * from kelas");
-                                        while ($tampil = mysqli_fetch_array($ambildata)){ 
-                                            echo "
-                                            <option value='$tampil[id]'>$tampil[ruang]</option>
-
-                                            "
-                                            ; 
-                                            } ?>
-                                        
-                                    </select>
+                                <div class="from-group" >
+                                    <label>Kelas</label> 
+                                    <input type="text" name="kelas" class="form-control" required/>
                                 </div>
                                 <div class="mt-2"></div>
                                 <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 

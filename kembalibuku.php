@@ -148,8 +148,9 @@
                             <form action="proseskembalibuku.php" method="post">
                                 <div class="from-group" >
                                     <label>Nama Buku:</label>
-                                    <input type="text" name="kode_buku" value="<?=$data['judul']?>" class="form-control" disabled/>
+                                    <input type="text" name="namabubku" value="<?=$data['judul']?>" class="form-control" disabled/>
                                 </div> 
+                                <input type="hidden" name="kode_buku" value="<?=$data['kode_buku']?>">
                                 <div class="from-group" >
                                     <label>Nama Siswa</label>
                                     <input type="text" name="NISN" value="<?=$data['nama']?>" class="form-control" disabled/>

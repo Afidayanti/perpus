@@ -49,15 +49,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -111,7 +111,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -141,17 +141,44 @@
                         <div class="card-body">
                             <form action="prosestambahbuku.php" method="post">
                                 <div class="from-group" >
-                                    <label>Kode Buku:</label>
-                                    <input type="text" name="kode_buku" class="form-control"/>
+                                    <label>ISBN</label>
+                                    <input type="text" name="kode_buku" class="form-control" required/>
                                 </div> 
                                 <div class="from-group" >
-                                    <label>Judul</label>
-                                    <input type="text" name="judul" class="form-control"/>
+                                    <label>Judul Buku</label>
+                                    <input type="text" name="judul" class="form-control" required/>
+                                </div>  
+                                <div class="from-group" >
+                                    <label>Pengarang</label>
+                                    <input type="text" name="pengarang" class="form-control" required/>
                                 </div> 
                                 <div class="from-group" >
-                                    <label>Tahun Terbit:</label>
-                                    <input type="date" name="tahun_terbit" class="form-control"/>
+                                    <label>Penerbit</label>
+                                    <input type="text" name="penerbit" class="form-control" required/>
                                 </div>
+                                <div class="from-group" >
+                                    <label>Tahun Terbit</label>
+                                    <input type="date" name="tahun_terbit" class="form-control" required/>
+                                </div>
+                                 <div class="from-group" >
+                                    <label>Stok Buku</label>
+                                    <input type="text" name="stok_buku" class="form-control" required/>
+                                </div>
+                                  <label>Kategori Buku</label>
+                                     <select name="kat_buku" class="form-control">
+                                         <?php
+                                        include "koneksi.php";
+                                        $no=1;
+                                        $ambildata = mysqli_query($koneksi,"select * from kategori_buku");
+                                        while ($tampil = mysqli_fetch_array($ambildata)){ 
+                                            echo "
+                                            <option value='$tampil[id]'>$tampil[kat_buku]</option>
+
+                                            "
+                                            ; 
+                                            } ?>
+                                        
+                                    </select>
                                 <div class="mt-2"></div>
                                 <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Tambah</span> </button>

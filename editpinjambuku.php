@@ -55,9 +55,9 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -148,7 +148,7 @@
                             <form action="proseseditpinjam.php" method="post">
                                 <input type="hidden" name="id_pinjam" value="<?=$data['id_pinjam']?>">
                                 <div class="from-group" >
-                                    <label>Kode Buku:</label>
+                                    <label>Judul Buku</label>
                                     
                                     <select name="kode_buku" class="form-control">
                                          <?php
@@ -167,7 +167,7 @@
                                     <!-- <input type="text" name="kode_buku" class="form-control"/> -->
                                 </div> 
                                 <div class="from-group" >
-                                    <label>Nama Siswa</label>
+                                    <label>Nama Anggota</label>
                                      <select name="nisn" class="form-control">
                                          <?php
                                         // include "koneksi.php";

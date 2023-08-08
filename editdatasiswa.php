@@ -111,7 +111,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -136,7 +136,7 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Edit Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Edit Data Anggota</h6>
                         </div> 
                         <div class="card-body">
                             <?php 
@@ -160,22 +160,10 @@
                                     <input type="text" name="alamat" value="<?=$data['alamat'] ?>" class="form-control"/>
                                 </div> 
                                 <div class="from-group" >
-                                    <label>Ruang</label>
-                                     <select name="id_ruang" class="form-control">
-                                         <?php
-                                        include "koneksi.php";
-                                        $no=1;
-                                        $ambildata = mysqli_query($koneksi,"select * from kelas");
-                                        while ($tampil = mysqli_fetch_array($ambildata)){ 
-                                            echo "
-                                            <option value='$tampil[id]'>$tampil[ruang]</option>
-
-                                            "
-                                            ; 
-                                            } ?>
-                                        
-                                    </select>
-                                </div>
+                                    <label>Kelas</label>
+                                    <input type="text" name="kelas" value="<?=$data['kelas'] ?>"  class="form-control"/>
+                                </div> 
+                                
                                 <div class="mt-2"></div>
                                <button type="submit" name="Submit" class="btn btn-primary btn-icon-split"> 
                                     <span class="text">Simpan</span> </button>

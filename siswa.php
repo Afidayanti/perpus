@@ -8,6 +8,7 @@ $db         ="akademik";
 $nisn     = "";
 $nama     = "";
 $alamat   = "";
+$kelas   = "";
 $sukses   = "";
 $error    = "";
 
@@ -34,6 +35,7 @@ if($op == 'edit'){
     $nisn       = $r1['nisn'];
     $nama       = $r1['nama'];
     $alamat     = $r1['alamat'];
+    $kelas     = $r1['kelas'];
 
     if($nim == ''){
         $error = "Data Tidak Ditemukan";
@@ -96,15 +98,15 @@ if($op == 'edit'){
             <li class="nav-item">
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Data Siswa</span>
+                    <span>Data Anggota</span>
                 </a> 
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kelas.php">
+                <a class="nav-link collapsed" href="kategori_buku.php">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Kelas</span>
+                    <span>Kategori Buku</span>
                 </a> 
             </li>
  
@@ -190,7 +192,7 @@ if($op == 'edit'){
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Anggota</h6>
                         </div> 
                         <div class="card-body">
                             <a href="tambahsiswa.php" class="btn btn-primary btn-icon-split"> 
@@ -212,8 +214,8 @@ if($op == 'edit'){
                                     <tbody>
                                     <?php
                                         include "koneksi.php";
-                                        $no=1;
-                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM siswa, kelas WHERE kelas.id=siswa.id_ruang");
+                                        $no= 1;
+                                        $ambildata = mysqli_query($koneksi,"SELECT * FROM siswa");
                                         while ($tampil = mysqli_fetch_array($ambildata)){
                                             echo "
                                             <tr>
@@ -221,17 +223,16 @@ if($op == 'edit'){
                                                 <td>$tampil[nisn]</td>
                                                 <td>$tampil[nama]</td>
                                                 <td>$tampil[alamat]</td>
-                                                <td>$tampil[ruang]</td>
+                                                <td>$tampil[kelas]</td>
                                                 <td>
                                                 <a href='editdatasiswa.php?id=$tampil[id_siswa]' class='btn btn-success btn-icon-split'> 
                                                     <span class='text'>Edit</span>
                                                 </a>        
-                                                <a href='hapusdatasiswa.php?id=$tampil[id_siswa]' class='btn btn-danger btn-icon-split'> 
-                                                    <span class='text'>Delete</span>
-                                                </a>
+                                                <button type='button' class='btn btn-danger' onclick='confirmDeleteModal($tampil[id_siswa])'>Delete</button>
 
                                             </td>
                                            </tr> ";
+                                           $no++;
                                         }
                                     ?>
                                 <!-- <tr>
@@ -298,6 +299,48 @@ if($op == 'edit'){
         </div>
     </div>
 
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <span id="deleteButton"></span>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!----modal starts here--->
+    <!-- <div id="deleteModal" class="modal fade" role='dialog'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Delete </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do You Really Want to Delete This ?</p>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <span id= 'deleteButton'></span>
+                </div>
+                
+            </div>
+        </div>
+    </div> -->
+    <!--Modal ends here--->
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -314,6 +357,20 @@ if($op == 'edit'){
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+
+        function confirmDeleteModal(id){
+            $('#deleteModal').modal();
+            $('#deleteButton').html('<button type="button" class="btn btn-danger" onclick="deleteData('+id+')">Ya</button>');
+        }     
+
+        function deleteData(id){
+            window.location.href='hapusdatasiswa.php?id='+id;
+            $('#deleteModal').modal('hide'); // now close modal
+        }  
+
+    </script>
 
 </body>
 
